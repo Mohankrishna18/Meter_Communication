@@ -18,8 +18,8 @@ export default function ContentComponent() {
     Feeder: "",
     DTR: "",
     METER: "",
-    Fromdate:"",
-    todate :"",
+    Fromdate: "",
+    todate: "",
   };
 
   const [values, setValues] = useState(initialValues);
@@ -43,8 +43,8 @@ export default function ContentComponent() {
       Feeder: "",
       DTR: "",
       METER: "",
-      Fromdate:"",
-      todate :"",
+      Fromdate: "",
+      todate: "",
     })
   }
 
@@ -245,45 +245,45 @@ export default function ContentComponent() {
 
           </TextField>
         </Grid>
-        <Grid item  xs={6}>
+        <Grid item xs={6}>
 
-          </Grid>
+        </Grid>
 
-      <Grid item xl={6} md={3} xs={6} sm={6}>
+        <Grid item xl={6} md={3} xs={6} sm={6}>
 
-        <TextField name='Fromdate' label="Fromdate" type="date" value={values.date} sx={{ width: 220 }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={handleInputChange}
-        />
-      </Grid>
-      
-      <Grid item xl={6} md={3} xs={6} sm={6}>
-        <TextField
+          <TextField name='Fromdate' label="Fromdate" type="date" value={values.date} sx={{ width: 220 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={handleInputChange}
+          />
+        </Grid>
 
-          name='todate'
+        <Grid item xl={6} md={3} xs={6} sm={6}>
+          <TextField
 
-          label="Todate"
+            name='todate'
 
-          type="date"
+            label="Todate"
 
-          value={values.date}
+            type="date"
 
-          sx={{ width: 220 }}
+            value={values.date}
 
-          InputLabelProps={{
+            sx={{ width: 220 }}
 
-            shrink: true,
+            InputLabelProps={{
 
-          }}
+              shrink: true,
 
-          onChange={handleInputChange}
+            }}
 
-        />
-      </Grid>
-      
-      
+            onChange={handleInputChange}
+
+          />
+        </Grid>
+
+
         <Grid item xs={12} md={12}>
           <Stack spacing={2} direction="row" justifyContent="center">
             <Button variant="contained" color="success" onClick={handleSubmit}>SUBMIT </Button>

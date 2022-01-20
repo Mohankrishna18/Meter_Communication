@@ -7,7 +7,7 @@ export const Regions = [
   ];
   export const Circles = [
     {
-      value: '2',
+      value: '1',
       label: 'Rangareddycircle',
     }
   ];
@@ -120,14 +120,14 @@ export const Regions = [
   ];
   export const Feeders = [
     {
-      value: '23',
+      value: '1',
       label: 'SIR RAMNAGAR',
     }
   ];
   
   export const DTRS = [
     {
-      value: '24',
+      value: '1',
       label: 'LAMBADI THANDA',
     }
   ];
