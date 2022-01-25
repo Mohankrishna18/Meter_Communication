@@ -2,26 +2,51 @@
     {
       "region": "AZAMABAD",
       "country_code": "in",
-      "url": "google.co.in",
       "languages": [
         {
           "name": "AMBERPET",
-          "code": "en"
+          "AMBERPET":[
+            {
+              "AMBERPET":"AMBERPET-9440813021"
+            },
+            {
+              "AMBERPET":"GOLNAKA-9440813024"
+            },
+            {
+              "AMBERPET":"RAMALAYAM-9440813024"
+            }
+          ]
         },
         {
           "name": "BARKATPURA",
-          "code": "hi"
+          "BARKATPURA":[
+            {
+              "BARKATPURA":"BARKATPURA-9440813944"
+            },
+            {
+              "BARKATPURA":"KACHIGUDA-9440813018"
+            },
+            {
+              "BARKATPURA":"SHANKARMUTT-9440813018"
+            },
+            {
+              "BARKATPURA":"VIJAYA NAGAR-9440813018"
+            }
+          ]
         },
         {
             "name": "VST",
-            "code": "hlo"
+            "VST":[
+              {
+                "VST":"M"
+              }
+            ]
           }
       ]
     },
     {
       "region": "MEHDIPATNAM",
       "country_code": "ae",
-      "url": "google.ae",
       "languages": [
         {
           "name": "A.C.GUARDS",
@@ -40,7 +65,6 @@
     {
         "region": "SAIFABAD",
         "country_code": "ae",
-        "url": "google.ae",
         "languages": [
           {
             "name": "HYDERGUDA",
@@ -48,6 +72,10 @@
           },
           {
             "name": "INDIRA PARK",
+            "code": "en"
+          },
+          {
+            "name": "SAIFABAD",
             "code": "en"
           }
         ]

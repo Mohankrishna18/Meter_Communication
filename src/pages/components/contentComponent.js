@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { Stack, Button, Box, Grid, Typography } from '@mui/material';
+import { Stack, Button, Box, Grid, Typography, MenuItem } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
-
-import { Regions, Circles, Divisions, SubDivisions, Sectionss, SubStationss, Feeders, DTRS } from './dropDowns'
+import { Regions, Circles, DTRS } from './dropDowns';
+import Divisions from '../components/utilites/Divisions.json';
+import SubDivisions from '../components/utilites/SubDivisions.json';
+import Sections from './utilites/Sections.json';
+import SubStations from './utilites/SubStations.json';
+import Feeders from './utilites/Feeders.json';
 
 export default function ContentComponent() {
+
+
 
 
   const initialValues = {
@@ -22,13 +28,93 @@ export default function ContentComponent() {
     todate: "",
   };
 
+
   const [values, setValues] = useState(initialValues);
+
+
+  const [division, setDivision] = useState([]);
+  const [subDivision, setSubDivision] = useState([]);
+  const [newSubdiv, setNewSubdiv] = useState([]);
+
+  const [section, setSection] = useState([]);
+  const [newSec, setnewSec] = useState([]);
+
+  const [subStations, setSubStations] = useState([]);
+  const [newSubSta, setnewSubSta] = useState([]);
+
+  const [feeders, setFeeders] = useState([]);
+  const [newFeeder, setNewFeeder] = useState([]);
+
+
+
+
+  const onDivision = (e) => {
+    console.log(e.target.value);
+    const subdivs = SubDivisions.filter((subdiv) => {
+      return subdiv.div_name === e.target.value;
+    });
+    console.log(subdivs);
+    setDivision(e.target.value);
+    setSubDivision(subdivs);
+  };
+
+
+  const onSubDivision = (e) => {
+    console.log(e.target.value);
+    setNewSubdiv(e.target.value);
+    const subsecs = Sections.filter((subsec) => {
+      return subsec.subdiv_name === e.target.value;
+    });
+    console.log(subsecs);
+    setSection(subsecs);
+    setnewSec(e.target.value);
+  };
+
+
+  const onSection = (e) => {
+    console.log(e.target.value);
+    setnewSec(e.target.value);
+    const substas = SubStations.filter((substa) => {
+      return substa.sec_name === e.target.value;
+    });
+    console.log(substas);
+    setSubStations(substas);
+    setnewSubSta(e.target.value);
+
+
+  }
+
+
+  const onSubStation = (e) => {
+    console.log(e.target.value);
+    setnewSubSta(e.target.value);
+    const feeds = Feeders.filter((feed) => {
+      return feed.feeder_name === e.target.value;
+    });
+    console.log(feeds);
+    setFeeders(feeds);
+    setNewFeeder(e.target.value);
+
+  }
+
+  const onFeeder = (e) => {
+    console.log(e.target.value);
+    setNewFeeder(e.target.value);
+  }
+
+
+
+
   const handleInputChange = e => {
     const { name, value } = e.target
     setValues({
       ...values, [name]: value
     })
   }
+
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -102,111 +188,93 @@ export default function ContentComponent() {
         </Grid>
 
         <Grid item xs={3}>
-
           <TextField
-            id="outlined-select-currency-native"
+            name="division"
             select
             fullWidth
-            required label="Division"
-            SelectProps={{
-              native: true,
-            }}
-            name="Division"
-            value={values.Division}
-            onChange={handleInputChange}
+            variant="standard"
+            color="primary"
+            label="select division"
+            onChange={onDivision}
+            value={division}
           >
-            {Divisions.map(item => (
-              <option key={item.label} value={item.label}>
-                {item.label}
-              </option>
+            {Divisions.map((division) => (
+              <MenuItem value={division.name} key={division.div_id}>
+                {division.name}
+              </MenuItem>
             ))}
-
           </TextField>
         </Grid>
 
         <Grid item xs={3}>
           <TextField
-            id="outlined-select-currency-native"
             select
             fullWidth
-            required label="Sub Division"
-            SelectProps={{
-              native: true,
-            }}
-            name="SubDivision"
-            value={values.SubDivision}
-            onChange={handleInputChange}
+            variant="standard"
+            color="primary"
+            label="select subdivision"
+            onChange={onSubDivision}
+            value={newSubdiv}
           >
-            {SubDivisions.map(item => (
-              <option key={item.label} value={item.label}>
-                {item.label}
-              </option>
+            {subDivision.map((subdiv) => (
+              <MenuItem value={subdiv.name} key={subdiv.name}>
+                {subdiv.name}
+              </MenuItem>
             ))}
-
           </TextField>
         </Grid>
 
         <Grid item xs={3}>
           <TextField
-            id="outlined-select-currency-native"
             select
             fullWidth
-            required label="Sections"
-            SelectProps={{
-              native: true,
-            }}
-            name="Sections"
-            value={values.Sections}
-            onChange={handleInputChange}
+            variant="standard"
+            color="primary"
+            label="sections"
+            onChange={onSection}
+            value={newSec}
           >
-            {Sectionss.map(item => (
-              <option key={item.label} value={item.label}>
-                {item.label}
-              </option>
+            {section.map((sec) => (
+              <MenuItem value={sec.name} key={sec.section_id}>
+                {sec.name}
+              </MenuItem>
             ))}
-
           </TextField>
         </Grid>
 
         <Grid item xs={3}>
           <TextField
-            id="outlined-select-currency-native"
             select
             fullWidth
-            required label="Sub station"
-            SelectProps={{
-              native: true,
-            }}
-            name="SubStations"
-            value={values.SubStations}
-            onChange={handleInputChange}
+            variant="standard"
+            color="primary"
+            label="Sub Stations"
+            onChange={onSubStation}
+            value={newSubSta}
           >
-            {SubStationss.map(item => (
-              <option key={item.label} value={item.label}>
-                {item.label}
-              </option>
+            {subStations.map((sta) => (
+              <MenuItem value={sta.name} key={sta.subsection_id}>
+                {sta.name}
+              </MenuItem>
             ))}
-
           </TextField>
         </Grid>
 
         <Grid item xs={3}>
           <TextField
-            id="outlined-select-currency-native"
             select
             fullWidth
-            required label="Feeder"
-
-            name="Feeder"
-            value={values.Feeder}
-            onChange={handleInputChange}
+            variant="standard"
+            color="primary"
+            label="Feeders"
+            onChange={onFeeder}
+            value={newFeeder}
           >
-            {Feeders.map(item => (
-              <option key={item.label} value={item.label}>
-                {item.label}
-              </option>
+            {feeders.map((fee) => (
+              <MenuItem value={fee.name} key={fee.feeder_id}>
+                {fee.name}
+              </MenuItem>
             ))}
-
           </TextField>
         </Grid>
 
