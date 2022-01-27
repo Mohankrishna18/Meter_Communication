@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Stack, Button, Box, Grid, Typography, MenuItem } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
-import { Regions, Circles, DTRS } from './dropDowns';
+import { Regions, Circles } from './dropDowns';
 import Divisions from '../components/utilites/Divisions.json';
 import SubDivisions from '../components/utilites/SubDivisions.json';
 import Sections from './utilites/Sections.json';
 import SubStations from './utilites/SubStations.json';
 import Feeders from './utilites/Feeders.json';
+import DTR from './utilites/DTR.json';
 
 export default function ContentComponent() {
 
@@ -44,6 +45,9 @@ export default function ContentComponent() {
 
   const [feeders, setFeeders] = useState([]);
   const [newFeeder, setNewFeeder] = useState([]);
+
+  const [dtr,setdtr] = useState([]);
+  const [newDtr,setNewDtr] = useState([]);
 
 
 
@@ -100,6 +104,18 @@ export default function ContentComponent() {
   const onFeeder = (e) => {
     console.log(e.target.value);
     setNewFeeder(e.target.value);
+    const dtrs = DTR.filter((dt) => {
+      return dt.dtr_name === e.target.value;
+    });
+    console.log(dtrs);
+    setdtr(dtrs);
+    setNewDtr(e.target.value);
+
+  }
+
+  const onDtr = (e) => {
+    console.log(e.target.value);
+    setNewDtr(e.target.value);
   }
 
 
@@ -153,7 +169,7 @@ export default function ContentComponent() {
             select
             fullWidth
             label="Region"
-            variant="outlined"
+            variant="standard"
 
             name="Region"
             value={values.Region}
@@ -173,7 +189,7 @@ export default function ContentComponent() {
             select
             fullWidth
             required label="Circle"
-
+            variant="standard"
             name="Circle"
             value={values.Circle}
             onChange={handleInputChange}
@@ -279,19 +295,18 @@ export default function ContentComponent() {
         </Grid>
 
         <Grid item xs={3}>
-          <TextField
-            id="outlined-select-currency-native"
+        <TextField
             select
             fullWidth
-            required label="DTR"
-
-            name="DTR"
-            value={values.DTR}
-            onChange={handleInputChange}
+            variant="standard"
+            color="primary"
+            label="DTR"
+            onChange={onDtr}
+            value={newDtr}
           >
-            {DTRS.map(item => (
-              <option key={item.label} value={item.label}>
-                {item.label}
+            {dtr.map(item => (
+              <option key={item.name} value={item.dtr_id}>
+                {item.name}
               </option>
             ))}
 
@@ -306,6 +321,7 @@ export default function ContentComponent() {
             id="outlined-select-currency-native"
             required label="METER"
             name="METER"
+            variant="standard"
             value={values.METER}
 
             onChange={handleInputChange}
