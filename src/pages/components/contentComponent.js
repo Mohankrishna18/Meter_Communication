@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { Stack, Button, Box, Grid, Typography, MenuItem } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
-import { Regions, Circles } from './dropDowns';
+
 import Divisions from '../components/utilites/Divisions.json';
 import SubDivisions from '../components/utilites/SubDivisions.json';
 import Sections from './utilites/Sections.json';
 import SubStations from './utilites/SubStations.json';
 import Feeders from './utilites/Feeders.json';
 import DTR from './utilites/DTR.json';
+import Region from './utilites/Region.json';
+import Circle from './utilites/Circle.json';
 
 export default function ContentComponent() {
 
@@ -32,8 +34,14 @@ export default function ContentComponent() {
 
   const [values, setValues] = useState(initialValues);
 
+  const [newRegion,setnewRegion] = useState([]);
+
+  const [circle, setCircle] = useState([]);
+  const [newCircle, setnewCircle] = useState([]);
 
   const [division, setDivision] = useState([]);
+  const [newDivision, setNewDivision] = useState([]);
+
   const [subDivision, setSubDivision] = useState([]);
   const [newSubdiv, setNewSubdiv] = useState([]);
 
@@ -51,6 +59,26 @@ export default function ContentComponent() {
 
 
 
+  const onRegion =(e)=>{
+    console.log(e.target.value);
+    const circ=Circle.filter((cir)=>{
+      return cir.reg_name === e.target.value;
+    })
+    console.log(circ);
+    setCircle(circ);
+    setnewRegion(e.target.value);
+  }
+ 
+  const onCircle = (e) => {
+		e.preventDefault();
+		console.log(e.target.value);
+		const divs = Divisions.filter((div) => {
+			return div.cir_name=== e.target.value;
+		});
+		console.log(divs);
+		setNewDivision(divs);
+		setnewCircle(e.target.value);
+	};
 
   const onDivision = (e) => {
     console.log(e.target.value);
@@ -58,8 +86,9 @@ export default function ContentComponent() {
       return subdiv.div_name === e.target.value;
     });
     console.log(subdivs);
-    setDivision(e.target.value);
     setSubDivision(subdivs);
+    setDivision(e.target.value);
+    
   };
 
 
@@ -71,7 +100,7 @@ export default function ContentComponent() {
     });
     console.log(subsecs);
     setSection(subsecs);
-    setnewSec(e.target.value);
+    
   };
 
 
@@ -83,7 +112,7 @@ export default function ContentComponent() {
     });
     console.log(substas);
     setSubStations(substas);
-    setnewSubSta(e.target.value);
+    
 
 
   }
@@ -97,7 +126,7 @@ export default function ContentComponent() {
     });
     console.log(feeds);
     setFeeders(feeds);
-    setNewFeeder(e.target.value);
+   
 
   }
 
@@ -109,7 +138,7 @@ export default function ContentComponent() {
     });
     console.log(dtrs);
     setdtr(dtrs);
-    setNewDtr(e.target.value);
+    
 
   }
 
@@ -164,20 +193,19 @@ export default function ContentComponent() {
           </Typography>
         </Grid>
         <Grid item xs={3}>
-          <TextField
+        <TextField
             id="outlined-select-currency-native"
             select
             fullWidth
-            label="Region"
+            required label="Region"
             variant="standard"
-
             name="Region"
-            value={values.Region}
-            onChange={handleInputChange}
+            value={newRegion}
+            onChange={onRegion}
           >
-            {Regions.map(item => (
-              <option key={item.label} value={item.label}>
-                {item.label}
+            {Region.map(item => (
+              <option key={item.name} value={item.name}>
+                {item.name}
               </option>
             ))}
 
@@ -191,12 +219,12 @@ export default function ContentComponent() {
             required label="Circle"
             variant="standard"
             name="Circle"
-            value={values.Circle}
-            onChange={handleInputChange}
+            value={newCircle}
+            onChange={onCircle}
           >
-            {Circles.map(item => (
-              <option key={item.label} value={item.label}>
-                {item.label}
+            {circle.map(item => (
+              <option value={item.name} key={item.cir_id}>
+                {item.name}
               </option>
             ))}
 
@@ -214,7 +242,7 @@ export default function ContentComponent() {
             onChange={onDivision}
             value={division}
           >
-            {Divisions.map((division) => (
+            {newDivision.map((division) => (
               <MenuItem value={division.name} key={division.div_id}>
                 {division.name}
               </MenuItem>

@@ -1,10 +1,11 @@
 
-import './App.css';
+
 import AppBar from './pages/components/appbar';
 
 function App() {
   return (
-    <div className="App">
+    
+    <div>
       <AppBar/>
     </div>
   );
