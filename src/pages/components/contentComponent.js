@@ -34,7 +34,7 @@ export default function ContentComponent() {
 
   const [values, setValues] = useState(initialValues);
 
-  const [newRegion,setnewRegion] = useState([]);
+  const [newRegion, setnewRegion] = useState([]);
 
   const [circle, setCircle] = useState([]);
   const [newCircle, setnewCircle] = useState([]);
@@ -54,31 +54,31 @@ export default function ContentComponent() {
   const [feeders, setFeeders] = useState([]);
   const [newFeeder, setNewFeeder] = useState([]);
 
-  const [dtr,setdtr] = useState([]);
-  const [newDtr,setNewDtr] = useState([]);
+  const [dtr, setdtr] = useState([]);
+  const [newDtr, setNewDtr] = useState([]);
 
 
 
-  const onRegion =(e)=>{
+  const onRegion = (e) => {
     console.log(e.target.value);
-    const circ=Circle.filter((cir)=>{
+    const circ = Circle.filter((cir) => {
       return cir.reg_name === e.target.value;
     })
     console.log(circ);
     setCircle(circ);
     setnewRegion(e.target.value);
   }
- 
+
   const onCircle = (e) => {
-		e.preventDefault();
-		console.log(e.target.value);
-		const divs = Divisions.filter((div) => {
-			return div.cir_name=== e.target.value;
-		});
-		console.log(divs);
-		setNewDivision(divs);
-		setnewCircle(e.target.value);
-	};
+    e.preventDefault();
+    console.log(e.target.value);
+    const divs = Divisions.filter((div) => {
+      return div.cir_name === e.target.value;
+    });
+    console.log(divs);
+    setNewDivision(divs);
+    setnewCircle(e.target.value);
+  };
 
   const onDivision = (e) => {
     console.log(e.target.value);
@@ -88,7 +88,7 @@ export default function ContentComponent() {
     console.log(subdivs);
     setSubDivision(subdivs);
     setDivision(e.target.value);
-    
+
   };
 
 
@@ -100,7 +100,7 @@ export default function ContentComponent() {
     });
     console.log(subsecs);
     setSection(subsecs);
-    
+
   };
 
 
@@ -112,7 +112,7 @@ export default function ContentComponent() {
     });
     console.log(substas);
     setSubStations(substas);
-    
+
 
 
   }
@@ -126,7 +126,7 @@ export default function ContentComponent() {
     });
     console.log(feeds);
     setFeeders(feeds);
-   
+
 
   }
 
@@ -138,7 +138,7 @@ export default function ContentComponent() {
     });
     console.log(dtrs);
     setdtr(dtrs);
-    
+
 
   }
 
@@ -164,15 +164,8 @@ export default function ContentComponent() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("InputFields", values);
+    console.log(newRegion);
     setValues({
-      Region: "",
-      Circle: "",
-      Division: "",
-      SubDivision: "",
-      Sections: "",
-      SubStations: "",
-      Feeder: "",
-      DTR: "",
       METER: "",
       Fromdate: "",
       todate: "",
@@ -193,7 +186,7 @@ export default function ContentComponent() {
           </Typography>
         </Grid>
         <Grid item xs={3}>
-        <TextField
+          <TextField
             id="outlined-select-currency-native"
             select
             fullWidth
@@ -323,7 +316,7 @@ export default function ContentComponent() {
         </Grid>
 
         <Grid item xs={3}>
-        <TextField
+          <TextField
             select
             fullWidth
             variant="standard"
